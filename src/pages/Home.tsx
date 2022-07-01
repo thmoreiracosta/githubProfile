@@ -5,7 +5,7 @@ export function Home() {
   const [search, setSearch] = useState('');
   const [userData, setUserData] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     fetch(`https://api.github.com/users/${search}`)
       .then(response => response.json())
@@ -15,7 +15,7 @@ export function Home() {
   console.log(userData);
 
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value);
     setSearch(event.target.value);
   }
