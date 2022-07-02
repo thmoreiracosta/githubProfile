@@ -1,15 +1,32 @@
 import { useState } from 'react';
 import githubImage from '../assets/octocat.png';
 
-export function Home() {
+
+const GET_API_URL = 'https://api.github.com/users/';
+
+interface GithubProps {
+  
+  avatar_url: string;
+  login: string;
+  html_url: string;
+  name: string;
+  location: string;
+
+}
+
+export function Home(props: GithubProps) {
+
   const [search, setSearch] = useState('');
-  const [userData, setUserData] = useState('');
+  const [userData, setUserData] = useState<GithubProps>(props);
+  
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`https://api.github.com/users/${search}`)
+    fetch(`${GET_API_URL}${search}`)
       .then(response => response.json())
-      .then(userResponse => setUserData(userResponse));
+      .then(userResponse => setUserData(userResponse))
+
   }
 
   console.log(userData);
@@ -47,7 +64,7 @@ export function Home() {
         </div>
       </form>
       <div className="py-5">
-        {!userData && (
+        {!userData.avatar_url && (
           <img
             className="responsive rounded-circle pt-2"
             src={githubImage}
