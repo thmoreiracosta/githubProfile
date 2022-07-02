@@ -72,7 +72,7 @@ export function Home(props: GithubProps) {
             height="200px"
           />
         )}
-        {userData && (
+        {userData.avatar_url && (
           <div>
             <img
               className="responsive rounded-circle pt-2"
