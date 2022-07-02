@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import githubImage from '../assets/octocat.png';
 
 
 const GET_API_URL = 'https://api.github.com/users/';
 
-interface GithubProps {
+export interface GithubProps {
   
-  avatar_url: string;
-  login: string;
-  html_url: string;
-  name: string;
-  location: string;
+  avatar_url?: string;
+  login?: string;
+  html_url?: string;
+  name?: string;
+  location?: string;
 
 }
 
@@ -21,7 +21,7 @@ export function Home(props: GithubProps) {
   
 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     fetch(`${GET_API_URL}${search}`)
       .then(response => response.json())
